@@ -41,6 +41,7 @@ int printf ( const char * format, ...);
 #include "mjpeg.h"
 #include "mjpegenc.h"
 
+//hc
 int maxcoefnum = 0;
 int blocknum = 0;
 int coefnumary[64];
@@ -223,10 +224,12 @@ static void record_block(MpegEncContext *s, int16_t *block, int n)
             }
             ff_mjpeg_encode_coef(m, table_id, val, run);
             run = 0;
+            //hc
             numcoef++; 
         }
     }
 
+    //hc
     coefnumary[numcoef]++;
 
     if (numcoef > maxcoefnum) {
@@ -246,6 +249,7 @@ static void record_block(MpegEncContext *s, int16_t *block, int n)
         }
         printf("coef gt %d lt %d (%.3f%%)\n", gt32, lt32, (double)gt32/(lt32+gt32));
     }
+    //end of coef stats
 
 
     if (n == 5) {
